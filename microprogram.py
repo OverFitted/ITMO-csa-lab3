@@ -37,3 +37,105 @@ class MP(Enum):
     HALT = 70
 
 
+opcode_to_mp = {
+    Opcode.JMP: 2,
+    Opcode.JZ: 3,
+    Opcode.HLT: 4,
+    Opcode.LOAD: 5,
+    Opcode.SAVE: 7,
+    Opcode.LLOAD: 9,
+    Opcode.SSAVE: 12,
+    Opcode.ADD: 15,
+    Opcode.MOD: 16,
+    Opcode.ADDM: 17,
+    Opcode.PUSH: 19,
+}
+
+memory = [
+    # 0 instr fetch
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.LATCH_INSTR],
+    [MP.MUX_MPC_INSTR, MP.LATCH_MPC],
+    # 2 Opcode.JMP
+    [MP.MUX_MPC_ZERO, MP.LATCH_MPC, MP.MUX_PC_JMP, MP.LATCH_PC],
+    # 3 Opcode.JZ
+    [MP.MUX_MPC_ZERO, MP.LATCH_MPC, MP.MUX_PC_JZ, MP.LATCH_PC],
+    # 4 Opcode.HLT
+    [MP.HALT],
+    # 5 Opcode.LOAD
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_INSTR, MP.LATCH_ADDR],
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_R_ZERO,
+        MP.MUX_ALU_L_MEM,
+        MP.ALU_ADD,
+        MP.LATCH_ACC,
+    ],
+    # 7 Opcode.SAVE
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_INSTR, MP.LATCH_ADDR],
+    [MP.MUX_MPC_ZERO, MP.LATCH_MPC, MP.MUX_PC_NEXT, MP.LATCH_PC, MP.WR],
+    # 9 Opcode.LLOAD
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_INSTR, MP.LATCH_ADDR],
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_MEM, MP.LATCH_ADDR],
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_R_ZERO,
+        MP.MUX_ALU_L_MEM,
+        MP.ALU_ADD,
+        MP.LATCH_ACC,
+    ],
+    # 12 Opcode.SSAVE
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_INSTR, MP.LATCH_ADDR],
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_MEM, MP.LATCH_ADDR],
+    [MP.MUX_MPC_ZERO, MP.LATCH_MPC, MP.MUX_PC_NEXT, MP.LATCH_PC, MP.WR],
+    # 15 Opcode.ADD
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_L_INSTR,
+        MP.MUX_ALU_R_ACC,
+        MP.ALU_ADD,
+        MP.LATCH_ACC,
+    ],
+    # 16 Opcode.MOD
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_L_INSTR,
+        MP.MUX_ALU_R_ACC,
+        MP.ALU_MOD,
+        MP.LATCH_ACC,
+    ],
+    # 17 Opcode.ADDM
+    [MP.MUX_MPC_NEXT, MP.LATCH_MPC, MP.MUX_ADDR_INSTR, MP.LATCH_ADDR],
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_L_MEM,
+        MP.MUX_ALU_R_ACC,
+        MP.ALU_ADD,
+        MP.LATCH_ACC,
+    ],
+    # 19 Opcode.PUSH
+    [
+        MP.MUX_MPC_ZERO,
+        MP.LATCH_MPC,
+        MP.MUX_PC_NEXT,
+        MP.LATCH_PC,
+        MP.MUX_ALU_L_INSTR,
+        MP.MUX_ALU_R_ZERO,
+        MP.ALU_ADD,
+        MP.LATCH_ACC,
+    ],
+]
