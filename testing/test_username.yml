@@ -46,14 +46,14 @@ in_source: |-
   hlt:
       HLT
 in_stdin: |
-  Boris Kozak
+  aboba
 
 out_stdout: |
   LoC: 46 Instr: 69
   ============================================================
-  Hello, Boris Kozak
+  Hello, aboba
 
-  Instructions: 216 Ticks: 800
+  Instructions: 146 Ticks: 540
 out_code: |-
   [{"index": 0, "opcode": "PUSH", "arg": 30},
    {"index": 1, "opcode": "SAVE", "arg": 68},
@@ -332,29 +332,22 @@ out_log: |
   DEBUG    root:simulator.py:28 TICK: 197 JZ     PC:   9 MPC:  0 AR:  37 ACC:   0 
   DEBUG    root:simulator.py:28 TICK: 198 PUSH   PC:   9 MPC:  1 AR:  37 ACC:   0 
   DEBUG    root:simulator.py:28 TICK: 199 PUSH   PC:   9 MPC: 19 AR:  37 ACC:   0 
-  WARNING  root:Debug limit exceeded!
-  DEBUG    root:datapath.py:86 input: B
-  DEBUG    root:datapath.py:86 input: o
-  DEBUG    root:datapath.py:86 input: r
-  DEBUG    root:datapath.py:86 input: i
-  DEBUG    root:datapath.py:86 input: s
-  DEBUG    root:datapath.py:86 input:  
-  DEBUG    root:datapath.py:86 input: K
-  DEBUG    root:datapath.py:86 input: o
-  DEBUG    root:datapath.py:86 input: z
+  WARNING  root:simulator.py:30 Debug limit exceeded!
   DEBUG    root:datapath.py:86 input: a
-  DEBUG    root:datapath.py:86 input: k
-  DEBUG    root:datapath.py:86 input:
-  DEBUG    root:datapath.py:92 output: Hello, B << 66
-  DEBUG    root:datapath.py:92 output: Hello, Bo << 111
-  DEBUG    root:datapath.py:92 output: Hello, Bor << 114
-  DEBUG    root:datapath.py:92 output: Hello, Bori << 105
-  DEBUG    root:datapath.py:92 output: Hello, Boris << 115
-  DEBUG    root:datapath.py:92 output: Hello, Boris  << 32
-  DEBUG    root:datapath.py:92 output: Hello, Boris K << 75
-  DEBUG    root:datapath.py:92 output: Hello, Boris Ko << 111
-  DEBUG    root:datapath.py:92 output: Hello, Boris Koz << 122
-  DEBUG    root:datapath.py:92 output: Hello, Boris Koza << 97
-  DEBUG    root:datapath.py:92 output: Hello, Boris Kozak << 107
-  INFO     root:datapath.py:92 output_buffer: Hello, Boris Kozak
-  INFO     root:End simulation
+  DEBUG    root:datapath.py:86 input: b
+  DEBUG    root:datapath.py:86 input: o
+  DEBUG    root:datapath.py:86 input: b
+  DEBUG    root:datapath.py:86 input: a
+  DEBUG    root:datapath.py:86 input: 
+
+  DEBUG    root:datapath.py:86 input: 
+  DEBUG    root:datapath.py:92 output: Hello, a << 97
+  DEBUG    root:datapath.py:92 output: Hello, ab << 98
+  DEBUG    root:datapath.py:92 output: Hello, abo << 111
+  DEBUG    root:datapath.py:92 output: Hello, abob << 98
+  DEBUG    root:datapath.py:92 output: Hello, aboba << 97
+  DEBUG    root:datapath.py:92 output: Hello, aboba
+   << 10
+  INFO     root:simulator.py:41 output_buffer: Hello, aboba
+
+  INFO     root:simulator.py:58 End simulation
