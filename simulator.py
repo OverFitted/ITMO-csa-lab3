@@ -62,7 +62,7 @@ def main(code_file: str, input_file: str, debug_limit: int, limit: int):
 
 
 if __name__ == "__main__":
-    logging.getLogger().setLevel(logging.INFO)  # DEBUG | INFO
+    logging.getLogger().setLevel(logging.DEBUG)  # DEBUG | INFO
 
     parser = argparse.ArgumentParser(description="Симуляция процессора")
     parser.add_argument("code_file", help="Имя файла бинарным с кодом")
