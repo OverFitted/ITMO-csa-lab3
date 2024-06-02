@@ -1,0 +1,353 @@
+in_source: |-
+  .data:
+      STR hello "Hello, "
+      BUF username 30
+      INT index 0
+
+  .code:
+      PUSH hello
+      SAVE index
+
+  print_hello:
+      LLOAD index
+      JZ after_print_hello
+      OUT
+      LOAD index
+      ADD 1
+      SAVE index
+      JMP print_hello
+
+  after_print_hello:
+      PUSH username
+      SAVE index
+
+  read_name:
+      INP
+      JZ after_read_name
+      SSAVE index
+      LOAD index
+      ADD 1
+      SAVE index
+      JMP read_name
+
+  after_read_name:
+      PUSH username
+      SAVE index
+
+  print_name:
+      LLOAD index
+      JZ hlt
+      OUT
+      LOAD index
+      ADD 1
+      SAVE index
+      JMP print_name
+
+  hlt:
+      HLT
+in_stdin: |
+  Boris Kozak
+
+out_stdout: |
+  LoC: 46 Instr: 69
+  ============================================================
+  Hello, Boris Kozak
+
+  Instructions: 146 Ticks: 540
+out_code: |-
+  [{"index": 0, "opcode": "PUSH", "arg": 30},
+   {"index": 1, "opcode": "SAVE", "arg": 68},
+   {"index": 2, "opcode": "LLOAD", "arg": 68},
+   {"index": 3, "opcode": "JZ", "arg": 9},
+   {"index": 4, "opcode": "SAVE", "arg": 1},
+   {"index": 5, "opcode": "LOAD", "arg": 68},
+   {"index": 6, "opcode": "ADD", "arg": 1},
+   {"index": 7, "opcode": "SAVE", "arg": 68},
+   {"index": 8, "opcode": "JMP", "arg": 2},
+   {"index": 9, "opcode": "PUSH", "arg": 38},
+   {"index": 10, "opcode": "SAVE", "arg": 68},
+   {"index": 11, "opcode": "LOAD", "arg": 0},
+   {"index": 12, "opcode": "JZ", "arg": 18},
+   {"index": 13, "opcode": "SSAVE", "arg": 68},
+   {"index": 14, "opcode": "LOAD", "arg": 68},
+   {"index": 15, "opcode": "ADD", "arg": 1},
+   {"index": 16, "opcode": "SAVE", "arg": 68},
+   {"index": 17, "opcode": "JMP", "arg": 11},
+   {"index": 18, "opcode": "PUSH", "arg": 38},
+   {"index": 19, "opcode": "SAVE", "arg": 68},
+   {"index": 20, "opcode": "LLOAD", "arg": 68},
+   {"index": 21, "opcode": "JZ", "arg": 27},
+   {"index": 22, "opcode": "SAVE", "arg": 1},
+   {"index": 23, "opcode": "LOAD", "arg": 68},
+   {"index": 24, "opcode": "ADD", "arg": 1},
+   {"index": 25, "opcode": "SAVE", "arg": 68},
+   {"index": 26, "opcode": "JMP", "arg": 20},
+   {"index": 27, "opcode": "HLT", "arg": null},
+   {"index": 28, "opcode": "INT", "arg": 0},
+   {"index": 29, "opcode": "INT", "arg": 0},
+   {"index": 30, "opcode": "STR", "arg": 72},
+   {"index": 31, "opcode": "STR", "arg": 101},
+   {"index": 32, "opcode": "STR", "arg": 108},
+   {"index": 33, "opcode": "STR", "arg": 108},
+   {"index": 34, "opcode": "STR", "arg": 111},
+   {"index": 35, "opcode": "STR", "arg": 44},
+   {"index": 36, "opcode": "STR", "arg": 32},
+   {"index": 37, "opcode": "STR", "arg": 0},
+   {"index": 38, "opcode": "BUF", "arg": 0},
+   {"index": 39, "opcode": "BUF", "arg": 0},
+   {"index": 40, "opcode": "BUF", "arg": 0},
+   {"index": 41, "opcode": "BUF", "arg": 0},
+   {"index": 42, "opcode": "BUF", "arg": 0},
+   {"index": 43, "opcode": "BUF", "arg": 0},
+   {"index": 44, "opcode": "BUF", "arg": 0},
+   {"index": 45, "opcode": "BUF", "arg": 0},
+   {"index": 46, "opcode": "BUF", "arg": 0},
+   {"index": 47, "opcode": "BUF", "arg": 0},
+   {"index": 48, "opcode": "BUF", "arg": 0},
+   {"index": 49, "opcode": "BUF", "arg": 0},
+   {"index": 50, "opcode": "BUF", "arg": 0},
+   {"index": 51, "opcode": "BUF", "arg": 0},
+   {"index": 52, "opcode": "BUF", "arg": 0},
+   {"index": 53, "opcode": "BUF", "arg": 0},
+   {"index": 54, "opcode": "BUF", "arg": 0},
+   {"index": 55, "opcode": "BUF", "arg": 0},
+   {"index": 56, "opcode": "BUF", "arg": 0},
+   {"index": 57, "opcode": "BUF", "arg": 0},
+   {"index": 58, "opcode": "BUF", "arg": 0},
+   {"index": 59, "opcode": "BUF", "arg": 0},
+   {"index": 60, "opcode": "BUF", "arg": 0},
+   {"index": 61, "opcode": "BUF", "arg": 0},
+   {"index": 62, "opcode": "BUF", "arg": 0},
+   {"index": 63, "opcode": "BUF", "arg": 0},
+   {"index": 64, "opcode": "BUF", "arg": 0},
+   {"index": 65, "opcode": "BUF", "arg": 0},
+   {"index": 66, "opcode": "BUF", "arg": 0},
+   {"index": 67, "opcode": "BUF", "arg": 0},
+   {"index": 68, "opcode": "INT", "arg": 0}]
+out_log: |
+  INFO     root:simulator.py:54 Start simulation
+  DEBUG    root:simulator.py:28 TICK:   1 PUSH   PC:   0 MPC:  1 AR:   0 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK:   2 PUSH   PC:   0 MPC: 19 AR:   0 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK:   3 PUSH   PC:   1 MPC:  0 AR:   0 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   4 SAVE   PC:   1 MPC:  1 AR:   0 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   5 SAVE   PC:   1 MPC:  7 AR:   0 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   6 SAVE   PC:   1 MPC:  8 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   7 SAVE   PC:   2 MPC:  0 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   8 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:   9 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  10 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  11 LLOAD  PC:   2 MPC: 11 AR:  30 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  12 LLOAD  PC:   3 MPC:  0 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  13 JZ     PC:   3 MPC:  1 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  14 JZ     PC:   3 MPC:  3 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  15 JZ     PC:   4 MPC:  0 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  16 SAVE   PC:   4 MPC:  1 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  17 SAVE   PC:   4 MPC:  7 AR:  30 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  18 SAVE   PC:   4 MPC:  8 AR:   1 ACC:  72 
+  DEBUG    root:datapath.py:92 output: H << 72
+  DEBUG    root:simulator.py:28 TICK:  19 SAVE   PC:   5 MPC:  0 AR:   1 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  20 LOAD   PC:   5 MPC:  1 AR:   1 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  21 LOAD   PC:   5 MPC:  5 AR:   1 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  22 LOAD   PC:   5 MPC:  6 AR:  68 ACC:  72 
+  DEBUG    root:simulator.py:28 TICK:  23 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  24 ADD    PC:   6 MPC:  1 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  25 ADD    PC:   6 MPC: 15 AR:  68 ACC:  30 
+  DEBUG    root:simulator.py:28 TICK:  26 ADD    PC:   7 MPC:  0 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  27 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  28 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  29 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  30 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  31 JMP    PC:   8 MPC:  1 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  32 JMP    PC:   8 MPC:  2 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  33 JMP    PC:   2 MPC:  0 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  34 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  35 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  36 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  37 LLOAD  PC:   2 MPC: 11 AR:  31 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  38 LLOAD  PC:   3 MPC:  0 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  39 JZ     PC:   3 MPC:  1 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  40 JZ     PC:   3 MPC:  3 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  41 JZ     PC:   4 MPC:  0 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  42 SAVE   PC:   4 MPC:  1 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  43 SAVE   PC:   4 MPC:  7 AR:  31 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  44 SAVE   PC:   4 MPC:  8 AR:   1 ACC: 101 
+  DEBUG    root:datapath.py:92 output: He << 101
+  DEBUG    root:simulator.py:28 TICK:  45 SAVE   PC:   5 MPC:  0 AR:   1 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  46 LOAD   PC:   5 MPC:  1 AR:   1 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  47 LOAD   PC:   5 MPC:  5 AR:   1 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  48 LOAD   PC:   5 MPC:  6 AR:  68 ACC: 101 
+  DEBUG    root:simulator.py:28 TICK:  49 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  50 ADD    PC:   6 MPC:  1 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  51 ADD    PC:   6 MPC: 15 AR:  68 ACC:  31 
+  DEBUG    root:simulator.py:28 TICK:  52 ADD    PC:   7 MPC:  0 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  53 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  54 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  55 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  56 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  57 JMP    PC:   8 MPC:  1 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  58 JMP    PC:   8 MPC:  2 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  59 JMP    PC:   2 MPC:  0 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  60 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  61 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  62 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  63 LLOAD  PC:   2 MPC: 11 AR:  32 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  64 LLOAD  PC:   3 MPC:  0 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  65 JZ     PC:   3 MPC:  1 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  66 JZ     PC:   3 MPC:  3 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  67 JZ     PC:   4 MPC:  0 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  68 SAVE   PC:   4 MPC:  1 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  69 SAVE   PC:   4 MPC:  7 AR:  32 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  70 SAVE   PC:   4 MPC:  8 AR:   1 ACC: 108 
+  DEBUG    root:datapath.py:92 output: Hel << 108
+  DEBUG    root:simulator.py:28 TICK:  71 SAVE   PC:   5 MPC:  0 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  72 LOAD   PC:   5 MPC:  1 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  73 LOAD   PC:   5 MPC:  5 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  74 LOAD   PC:   5 MPC:  6 AR:  68 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  75 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  76 ADD    PC:   6 MPC:  1 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  77 ADD    PC:   6 MPC: 15 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK:  78 ADD    PC:   7 MPC:  0 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  79 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  80 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  81 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  82 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  83 JMP    PC:   8 MPC:  1 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  84 JMP    PC:   8 MPC:  2 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  85 JMP    PC:   2 MPC:  0 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  86 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  87 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  88 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  89 LLOAD  PC:   2 MPC: 11 AR:  33 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK:  90 LLOAD  PC:   3 MPC:  0 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  91 JZ     PC:   3 MPC:  1 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  92 JZ     PC:   3 MPC:  3 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  93 JZ     PC:   4 MPC:  0 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  94 SAVE   PC:   4 MPC:  1 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  95 SAVE   PC:   4 MPC:  7 AR:  33 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  96 SAVE   PC:   4 MPC:  8 AR:   1 ACC: 108 
+  DEBUG    root:datapath.py:92 output: Hell << 108
+  DEBUG    root:simulator.py:28 TICK:  97 SAVE   PC:   5 MPC:  0 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  98 LOAD   PC:   5 MPC:  1 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK:  99 LOAD   PC:   5 MPC:  5 AR:   1 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK: 100 LOAD   PC:   5 MPC:  6 AR:  68 ACC: 108 
+  DEBUG    root:simulator.py:28 TICK: 101 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK: 102 ADD    PC:   6 MPC:  1 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK: 103 ADD    PC:   6 MPC: 15 AR:  68 ACC:  33 
+  DEBUG    root:simulator.py:28 TICK: 104 ADD    PC:   7 MPC:  0 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 105 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 106 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 107 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 108 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 109 JMP    PC:   8 MPC:  1 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 110 JMP    PC:   8 MPC:  2 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 111 JMP    PC:   2 MPC:  0 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 112 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 113 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 114 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 115 LLOAD  PC:   2 MPC: 11 AR:  34 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 116 LLOAD  PC:   3 MPC:  0 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 117 JZ     PC:   3 MPC:  1 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 118 JZ     PC:   3 MPC:  3 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 119 JZ     PC:   4 MPC:  0 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 120 SAVE   PC:   4 MPC:  1 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 121 SAVE   PC:   4 MPC:  7 AR:  34 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 122 SAVE   PC:   4 MPC:  8 AR:   1 ACC: 111 
+  DEBUG    root:datapath.py:92 output: Hello << 111
+  DEBUG    root:simulator.py:28 TICK: 123 SAVE   PC:   5 MPC:  0 AR:   1 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 124 LOAD   PC:   5 MPC:  1 AR:   1 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 125 LOAD   PC:   5 MPC:  5 AR:   1 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 126 LOAD   PC:   5 MPC:  6 AR:  68 ACC: 111 
+  DEBUG    root:simulator.py:28 TICK: 127 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 128 ADD    PC:   6 MPC:  1 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 129 ADD    PC:   6 MPC: 15 AR:  68 ACC:  34 
+  DEBUG    root:simulator.py:28 TICK: 130 ADD    PC:   7 MPC:  0 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 131 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 132 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 133 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 134 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 135 JMP    PC:   8 MPC:  1 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 136 JMP    PC:   8 MPC:  2 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 137 JMP    PC:   2 MPC:  0 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 138 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 139 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 140 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 141 LLOAD  PC:   2 MPC: 11 AR:  35 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 142 LLOAD  PC:   3 MPC:  0 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 143 JZ     PC:   3 MPC:  1 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 144 JZ     PC:   3 MPC:  3 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 145 JZ     PC:   4 MPC:  0 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 146 SAVE   PC:   4 MPC:  1 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 147 SAVE   PC:   4 MPC:  7 AR:  35 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 148 SAVE   PC:   4 MPC:  8 AR:   1 ACC:  44 
+  DEBUG    root:datapath.py:92 output: Hello, << 44
+  DEBUG    root:simulator.py:28 TICK: 149 SAVE   PC:   5 MPC:  0 AR:   1 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 150 LOAD   PC:   5 MPC:  1 AR:   1 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 151 LOAD   PC:   5 MPC:  5 AR:   1 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 152 LOAD   PC:   5 MPC:  6 AR:  68 ACC:  44 
+  DEBUG    root:simulator.py:28 TICK: 153 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 154 ADD    PC:   6 MPC:  1 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 155 ADD    PC:   6 MPC: 15 AR:  68 ACC:  35 
+  DEBUG    root:simulator.py:28 TICK: 156 ADD    PC:   7 MPC:  0 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 157 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 158 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 159 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 160 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 161 JMP    PC:   8 MPC:  1 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 162 JMP    PC:   8 MPC:  2 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 163 JMP    PC:   2 MPC:  0 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 164 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 165 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 166 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 167 LLOAD  PC:   2 MPC: 11 AR:  36 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 168 LLOAD  PC:   3 MPC:  0 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 169 JZ     PC:   3 MPC:  1 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 170 JZ     PC:   3 MPC:  3 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 171 JZ     PC:   4 MPC:  0 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 172 SAVE   PC:   4 MPC:  1 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 173 SAVE   PC:   4 MPC:  7 AR:  36 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 174 SAVE   PC:   4 MPC:  8 AR:   1 ACC:  32 
+  DEBUG    root:datapath.py:92 output: Hello,  << 32
+  DEBUG    root:simulator.py:28 TICK: 175 SAVE   PC:   5 MPC:  0 AR:   1 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 176 LOAD   PC:   5 MPC:  1 AR:   1 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 177 LOAD   PC:   5 MPC:  5 AR:   1 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 178 LOAD   PC:   5 MPC:  6 AR:  68 ACC:  32 
+  DEBUG    root:simulator.py:28 TICK: 179 LOAD   PC:   6 MPC:  0 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 180 ADD    PC:   6 MPC:  1 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 181 ADD    PC:   6 MPC: 15 AR:  68 ACC:  36 
+  DEBUG    root:simulator.py:28 TICK: 182 ADD    PC:   7 MPC:  0 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 183 SAVE   PC:   7 MPC:  1 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 184 SAVE   PC:   7 MPC:  7 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 185 SAVE   PC:   7 MPC:  8 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 186 SAVE   PC:   8 MPC:  0 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 187 JMP    PC:   8 MPC:  1 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 188 JMP    PC:   8 MPC:  2 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 189 JMP    PC:   2 MPC:  0 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 190 LLOAD  PC:   2 MPC:  1 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 191 LLOAD  PC:   2 MPC:  9 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 192 LLOAD  PC:   2 MPC: 10 AR:  68 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 193 LLOAD  PC:   2 MPC: 11 AR:  37 ACC:  37 
+  DEBUG    root:simulator.py:28 TICK: 194 LLOAD  PC:   3 MPC:  0 AR:  37 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK: 195 JZ     PC:   3 MPC:  1 AR:  37 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK: 196 JZ     PC:   3 MPC:  3 AR:  37 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK: 197 JZ     PC:   9 MPC:  0 AR:  37 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK: 198 PUSH   PC:   9 MPC:  1 AR:  37 ACC:   0 
+  DEBUG    root:simulator.py:28 TICK: 199 PUSH   PC:   9 MPC: 19 AR:  37 ACC:   0 
+  WARNING  root:simulator.py:30 Debug limit exceeded!
+  DEBUG    root:datapath.py:86 input: a
+  DEBUG    root:datapath.py:86 input: b
+  DEBUG    root:datapath.py:86 input: o
+  DEBUG    root:datapath.py:86 input: b
+  DEBUG    root:datapath.py:86 input: a
+  DEBUG    root:datapath.py:86 input: 
+
+  DEBUG    root:datapath.py:86 input: 
+  DEBUG    root:datapath.py:92 output: Hello, a << 97
+  DEBUG    root:datapath.py:92 output: Hello, ab << 98
+  DEBUG    root:datapath.py:92 output: Hello, abo << 111
+  DEBUG    root:datapath.py:92 output: Hello, abob << 98
+  DEBUG    root:datapath.py:92 output: Hello, Boris Kozak << 97
+  DEBUG    root:datapath.py:92 output: Hello, Boris Kozak
+   << 10
+  INFO     root:simulator.py:41 output_buffer: Hello, Boris Kozak
+
+  INFO     root:simulator.py:58 End simulation
